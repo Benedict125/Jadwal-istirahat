@@ -90,7 +90,7 @@ pref_min_aktivitas_jam = st.sidebar.slider("Batas minimum aktivitas sehat (jam)?
 
 
 # --- DESAIN 2: Tampilan Tabs ---
-tab_input, tab_hasil = st.tabs(["🗓️ 1. SINI DiInput Jadwal pada Hari Ini", "🧠 2. YUU Lihat Hasil Analisis dari AI nya disini"])
+tab_input, tab_hasil = st.tabs(["🗓️ 1. SINI Di Input Jadwal pada Hari Ini", "🧠 2. YUHUU Lihat Hasil Analisis dari AI nya disini"])
 
 with tab_input:
     st.header("Masukkin dong Beban Tugas Harian hari ini")
