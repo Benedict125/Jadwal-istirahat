@@ -172,7 +172,7 @@ with tab_input:
             hasil['analisis_pesan'] = "🚨 **PERINGATAN 'OVERWORK'** 🚨\nJadwal Rebecca terlalu padat sehingga AI tidak bisa menemukan slot tidur. Kamu **wajib** mengurangi atau menggeser beban tugas hari ini nih."
         else:
             hasil['analisis_tipe'] = "success"
-            hasil['analisis_pesan'] = f"✅ **JADWAL SEIMBANG!**\nKerja bagus, {nama_user}! Kamu punya **{hasil['beban_total']}** beban tugas dan **{hasil['luang_total']}** waktu luang. Gunakan waktu luang itu untuk planning untuk kedepanya di sela-sela tugas ya. SemangatRebeccaa Sayang! ❤️"
+            hasil['analisis_pesan'] = f"✅ **JADWAL SEIMBANG!**\nKerja bagus, {nama_user}! Kamu punya **{hasil['beban_total']}** beban tugas dan **{hasil['luang_total']}** waktu luang. Gunakan waktu luang itu untuk planning untuk kedepanya di sela-sela tugas ya. Semangat Rebeccaa Sayang! ❤️"
         
         # Simpan semua hasil ke session state
         st.session_state.hasil_disimpan = hasil
