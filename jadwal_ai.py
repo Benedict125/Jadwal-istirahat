@@ -193,4 +193,8 @@ if st.button("Ramalkan Jadwal Istirahat Saya!", type="primary"):
     col1.metric("Total Beban Tugas (Input Anda)", 
                 f"{total_beban_menit // 60} jam {total_beban_menit % 60} mnt")
     col2.metric("Total Waktu Luang (Untuk Istirahat Mikro)", 
-                f"{total_waktu_luang_menit // 60
+                f"{total_waktu_luang_menit // 60} jam {total_waktu_luang_menit % 60} mnt")
+
+    st.markdown("---")
+    st.markdown("#### **Catatan dari AI (Berdasarkan Riset):**")
+    st.markdown(f"Anda memiliki **{total_waktu_luang_menit // 60} jam** waktu luang tersisa. Gunakan waktu ini untuk **istirahat mikro** (5-15 menit) di antara sesi tugas Anda untuk menjaga fokus. Semangat! ❤️")
