@@ -165,7 +165,7 @@ with tab_input:
         
         if total_beban_menit < MIN_BEBAN_MENIT:
             hasil['analisis_tipe'] = "warning"
-            hasil['analisis_pesan'] = f"⚠️ **PERINGATAN 'UNDERWORK'** ⚠️\nTotal aktivitas terstruktur kamu hari ini cuman **{hasil['beban_total']}**. Ini menyisakan **{hasil['luang_total']}** waktu luang. \n\nTerlalu banyak waktu pasif juga tidak sehat. AI merekomendasikan untuk menambahkan aktivitas ringan seperti: \n- 🏃‍♀️ Olahraga 30 menit\n- 📚 Membaca buku\n- 🧹 Membersihkan kamar"
+            hasil['analisis_pesan'] = f"⚠️ **PERINGATAN 'UNDERWORK'** ⚠️\nTotal aktivitas terstruktur kamu hari ini cuman **{hasil['beban_total']}**. Ini menyisakan **{hasil['luang_total']}** waktu luang. \n\nTerlalu banyak waktu pasif juga tidak sehat. AI merekomendasikan untuk menambahkan aktivitas ringan seperti: \n- Ketemu Benedict \n- 🏃‍♀️ Olahraga/GYM \n- 📚 Membaca buku\n- 🧹 Membersihkan kamar"
         elif hasil['tidur_tipe'] == 'error':
             # Jika overwork (terdeteksi dari gagalnya plot tidur)
             hasil['analisis_tipe'] = "error"
