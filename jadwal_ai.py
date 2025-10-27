@@ -74,11 +74,11 @@ if "show_results" not in st.session_state:
 
 # --- Tampilan Aplikasi (Web App) v4.0 ---
 
-st.set_page_config(page_title="AI Penjadwal Istirahat", page_icon="💖", layout="wide")
+st.set_page_config(page_title="AI Penjadwal Istirahat untuk Rebecca", page_icon="💖", layout="wide")
 
 # --- DESAIN 1: Personalisasi Sapaan ---
-nama_user = st.text_input("Siapa nama panggilan Anda?", "Sayang")
-st.title(f"💖 AI Penjadwal Istirahat untuk {nama_user}")
+nama_user = st.text_input("Siapa nama panggilan Anda?", "AKUU REBECCAAA")
+st.title(f"💖 AI Penjadwal Istirahat untuk {nama_user} YANG CANTIK NAN LUCU")
 
 # --- FASILITAS: Sidebar Pengaturan (dari v3.0) ---
 st.sidebar.header("⚙️ Pengaturan Preferensi")
@@ -90,23 +90,23 @@ pref_min_aktivitas_jam = st.sidebar.slider("Batas minimum aktivitas sehat (jam)?
 
 
 # --- DESAIN 2: Tampilan Tabs ---
-tab_input, tab_hasil = st.tabs(["🗓️ 1. Input Jadwalku Hari Ini", "🧠 2. Lihat Hasil Analisis AI"])
+tab_input, tab_hasil = st.tabs(["🗓️ 1. SINI DiInput Jadwal pada Hari Ini", "🧠 2. YUU Lihat Hasil Analisis dari AI nya disini"])
 
 with tab_input:
-    st.header("Masukkan Beban Tugas Harian")
+    st.header("Masukkin dong Beban Tugas Harian hari ini")
     st.info(f"""
-    Hai {nama_user}, masukkan semua jadwal sibukmu.
-    AI akan otomatis mencari jadwal istirahat terbaik DAN mengecek keseimbangan harimu.
+    Hai {nama_user}, masukkan semua jadwal sibuk Rebecca.
+    AI nya nanti akan otomatis mencari jadwal istirahat terbaik di harimu.
     **Contoh Format:**
     07:00-09:00 Kelas Pagi
     19:00-21:00 Tugas Lomba
-    23:00-00:00 Urusan Malam
+    23:00-00:00 Twitter
     """)
     
-    default_input = "07:00-09:00 Kelas\n10:00-12:00 Kelas\n13:00-15:00 Kelas\n15:00-17:00 Kelas Lanjutan\n19:00-21:00 Persiapan Lomba"
+    default_input = "07:00-09:00 Kelas\n10:00-12:00 Kelas\n13:00-15:00 Kelas\n15:00-17:00 Kelas\n19:00-21:00 Persiapan Lomba"
     input_beban = st.text_area("Jadwal Sibuk Hari Ini:", height=175, value=default_input, key="input_jadwal")
 
-    if st.button("Ramalkan Jadwal Istirahat Saya!", type="primary", use_container_width=True):
+    if st.button("Ramalkan Jadwal Istirahat untuk kamuuu!", type="primary", use_container_width=True):
         st.session_state.show_results = True # Set flag untuk tampilkan tab hasil
         hasil = {} # Reset hasil
         
@@ -131,11 +131,11 @@ with tab_input:
         
         if mulai_makan is not None:
             hasil['makan_tipe'] = "success"
-            hasil['makan_pesan'] = f"✅ AI menemukan slot Makan Siang ({durasi_makan} menit): **{menit_ke_time_str(mulai_makan)} - {menit_ke_time_str(selesai_makan)}**"
+            hasil['makan_pesan'] = f"✅ AI nya menemukan slot Makan Siang ({durasi_makan} menit): **{menit_ke_time_str(mulai_makan)} - {menit_ke_time_str(selesai_makan)}**"
             for menit in range(mulai_makan, selesai_makan): jadwal_harian[menit] = True
         else:
             hasil['makan_tipe'] = "warning"
-            hasil['makan_pesan'] = "⚠️ AI tidak menemukan slot 60 menit untuk makan siang antara 12:00-14:00."
+            hasil['makan_pesan'] = "⚠️ AI nya tidak menemukan slot 60 menit untuk makan siang antara 12:00-14:00."
 
         # 2. Cari Tidur (Sesuai Preferensi)
         durasi_tidur = int(pref_durasi_tidur_jam * 60)
@@ -147,13 +147,13 @@ with tab_input:
         if mulai_tidur is not None:
             waktu_bangun = menit_ke_time_str(selesai_tidur_panjang) 
             hasil['tidur_tipe'] = "success"
-            hasil['tidur_pesan'] = f"🎉 **RAMALAN AI: WAKTU TIDUR TERBAIK ({pref_durasi_tidur_jam} JAM):**"
+            hasil['tidur_pesan'] = f"🎉 **AI MERAMAL NIHH: WAKTU TIDUR TERBAIK YAITU ({pref_durasi_tidur_jam} JAM):**"
             hasil['tidur_mulai'] = menit_ke_time_str(mulai_tidur)
             hasil['tidur_selesai'] = waktu_bangun
             for i in range(durasi_tidur): jadwal_harian[(mulai_tidur + i) % 1440] = True
         else:
             hasil['tidur_tipe'] = "error"
-            hasil['tidur_pesan'] = f"🚨 **PERINGATAN OVERWORK!** AI tidak dapat menemukan celah {pref_durasi_tidur_jam} jam untuk tidur di sekitar jam {pref_jam_mulai_tidur.strftime('%H:%M')}."
+            hasil['tidur_pesan'] = f"🚨 **PERINGATAN OVERWORK!** AI tidak dapat nemuin celah {pref_durasi_tidur_jam} jam untuk tidur di sekitar jam {pref_jam_mulai_tidur.strftime('%H:%M')}."
 
         # 3. Analisis Beban Kerja (Overwork & Underwork)
         total_waktu_luang_menit = jadwal_harian.count(False)
@@ -165,25 +165,25 @@ with tab_input:
         
         if total_beban_menit < MIN_BEBAN_MENIT:
             hasil['analisis_tipe'] = "warning"
-            hasil['analisis_pesan'] = f"⚠️ **PERINGATAN 'UNDERWORK'** ⚠️\nTotal aktivitas terstrukturmu hari ini hanya **{hasil['beban_total']}**. Ini menyisakan **{hasil['luang_total']}** waktu luang. \n\nTerlalu banyak waktu pasif juga tidak sehat. AI merekomendasikan untuk menambahkan aktivitas ringan seperti: \n- 🏃‍♀️ Olahraga 30 menit\n- 📚 Membaca buku\n- 🧹 Membersihkan kamar"
+            hasil['analisis_pesan'] = f"⚠️ **PERINGATAN 'UNDERWORK'** ⚠️\nTotal aktivitas terstruktur Becca hari ini hanya **{hasil['beban_total']}**. Ini menyisakan **{hasil['luang_total']}** waktu luang. \n\nTerlalu banyak waktu pasif juga tidak sehat. AI merekomendasikan untuk menambahkan aktivitas nihh seperti: \n- Bertemu Benedict\n- 🏃‍♀️ Olahraga/GYM \n- 📚 Baca buku\n- 🧹 Bersihkan kamar"
         elif hasil['tidur_tipe'] == 'error':
             # Jika overwork (terdeteksi dari gagalnya plot tidur)
             hasil['analisis_tipe'] = "error"
-            hasil['analisis_pesan'] = "🚨 **PERINGATAN 'OVERWORK'** 🚨\nJadwalmu terlalu padat sehingga AI tidak bisa menemukan slot tidur. Kamu **wajib** mengurangi atau menggeser beban tugas hari ini."
+            hasil['analisis_pesan'] = "🚨 **PERINGATAN 'OVERWORK'** 🚨\nJadwal Rebecca terlalu padat sehingga AI tidak bisa menemukan slot tidur. Kamu **wajib** mengurangi atau menggeser beban tugas hari ini nih."
         else:
             hasil['analisis_tipe'] = "success"
-            hasil['analisis_pesan'] = f"✅ **JADWAL SEIMBANG!**\nKerja bagus, {nama_user}! Kamu punya **{hasil['beban_total']}** beban tugas dan **{hasil['luang_total']}** waktu luang. Gunakan waktu luang itu untuk istirahat mikro (5-15 menit) di sela-sela tugas ya. Semangat! ❤️"
+            hasil['analisis_pesan'] = f"✅ **JADWAL SEIMBANG!**\nKerja bagus, {nama_user}! Kamu punya **{hasil['beban_total']}** beban tugas dan **{hasil['luang_total']}** waktu luang. Gunakan waktu luang itu untuk planning untuk kedepanya di sela-sela tugas ya. SemangatRebeccaa Sayang! ❤️"
         
         # Simpan semua hasil ke session state
         st.session_state.hasil_disimpan = hasil
-        st.success("Analisis Selesai! Cek tab '🧠 2. Lihat Hasil Analisis AI'")
+        st.success("Analisis Selesai! Coba Cek tab '🧠 2. Lihat Hasil Analisis AI'")
 
 
 with tab_hasil:
     st.header(f"Analisis Keseimbangan Harian untuk {nama_user}")
 
     if not st.session_state.show_results:
-        st.info("Silakan masukkan jadwal di tab 1 dan klik tombol 'Ramalkan' untuk melihat hasil di sini.")
+        st.info("Silakan masukkan jadwal Rebecca di tab 1 dan klik tombol 'Ramalkan' untuk melihat hasilnya di sini.")
     else:
         # Ambil hasil dari session state
         hasil = st.session_state.hasil_disimpan
